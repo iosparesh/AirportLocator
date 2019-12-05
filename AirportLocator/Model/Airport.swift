@@ -9,8 +9,13 @@
 import Foundation
 import CoreLocation
 
-class Airport {
+struct Airport {
+    var id: String? = ""
+    var icon: String? = ""
     var location: CLLocation?
-    var title: String? = ""
+    var name: String? = ""
     var subTitle: String? = ""
+    var place_id: String? = ""
+    var distance: Double = 0.0
+    var vicinity: String? = ""
 }

@@ -30,6 +30,6 @@ enum GoogleSearch: String {
 }
 class GoogleApi {
     class func getApi(location: CLLocationCoordinate2D, searchKey: String) -> String {
-        return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=(\(location.latitude)),(\(location.longitude))&radius=5000&keyword=\(searchKey)&key=\(GoogleSearch.customSearchApiKey.rawValue)"
+        return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.latitude),\(location.longitude)&radius=5000&keyword=\(searchKey)&key=\(GoogleSearch.customSearchApiKey.rawValue)"
     }
 }
