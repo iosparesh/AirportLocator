@@ -77,13 +77,13 @@ class HomeViewModel: NSObject {
         return airportLocations
     }
 }
+// MARK :- LocationUpdateDelegate
 extension HomeViewModel: LocationUpdateDelegate {
     func locationUpdate(didUpdate location: CLLocation) {
-        print(location)
         currentLocation.value = location
         self.fetchNearByAirPorts { (isSucces, error) in
             if error != nil {
-                
+                //Show Error
             } else {
                 self.loadAirportAnnotations()
             }

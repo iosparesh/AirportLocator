@@ -14,6 +14,7 @@ class HomeScreenView: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     var userAnnotation = AirportAnnotation()
     var viewModel: HomeViewModel!
+// MARK :- ViewController's Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMap()
@@ -63,6 +64,9 @@ class HomeScreenView: UIViewController {
         guard let newLocation = updatedLocation else {
             return
         }
+        mapView.removeAnnotations(self.viewModel.annotations.value.annotations)
+        self.viewModel.airPorts.removeAll()
+        self.viewModel.annotations.value.annotations.removeAll()
         userAnnotation.coordinate = newLocation.coordinate
         userAnnotation.title = "Paresh is here"
         userAnnotation.pinCustomImageName = "user"
@@ -84,6 +88,7 @@ class HomeScreenView: UIViewController {
         mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: 40.0, left: 40.0, bottom: 40.0, right: 40.0), animated: true)
     }
 }
+// MARK :- MKMapViewDelegate
 extension HomeScreenView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
     }
