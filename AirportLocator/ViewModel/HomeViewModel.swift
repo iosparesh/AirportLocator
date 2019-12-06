@@ -24,7 +24,7 @@ class HomeViewModel: NSObject {
             airPortAnnotation.pinCustomImageName = "airport"
             airPortAnnotation.coordinate = airport.location!.coordinate
             airPortAnnotation.title = "\(airport.name ?? "")\n\(airport.vicinity ?? "")"
-            airPortAnnotation.subtitle = "\(airport.distance) KM "
+            airPortAnnotation.subtitle = String(format: "%.1f", airport.distance) + "Km"
             annotations.value.annotations.append(airPortAnnotation)
             annotations.value.isAdded = true
         }
@@ -66,6 +66,15 @@ class HomeViewModel: NSObject {
                 }
             }
         }).resume()
+    }
+    func getAllLocations() -> [CLLocationCoordinate2D] {
+        var airportLocations = [CLLocationCoordinate2D]()
+        airPorts.forEach { (airportLocation) in
+            if let location = airportLocation.location {
+                airportLocations.append(location.coordinate)
+            }
+        }
+        return airportLocations
     }
 }
 extension HomeViewModel: LocationUpdateDelegate {

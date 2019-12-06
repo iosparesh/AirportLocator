@@ -11,5 +11,4 @@ import UIKit
 
 class AirportAnnotation: MKPointAnnotation {
     var pinCustomImageName:String!
-    
 }
