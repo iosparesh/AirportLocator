@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class HomeScreenView: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
@@ -27,8 +26,7 @@ class HomeScreenView: UIViewController {
         mapView.mapType = .standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
-//        mapView.showsUserLocation = true
-        if let coor = mapView.userLocation.location?.coordinate{
+        if let coor = mapView.userLocation.location?.coordinate {
             mapView.setCenter(coor, animated: true)
         }
     }
@@ -65,13 +63,10 @@ class HomeScreenView: UIViewController {
         guard let newLocation = updatedLocation else {
             return
         }
-       // let center = CLLocationCoordinate2D(latitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude)
-     //   let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-     //   mapView.setRegion(region, animated: true)
         userAnnotation.coordinate = newLocation.coordinate
-        userAnnotation.title = "Me Here"
+        userAnnotation.title = "Paresh is here"
         userAnnotation.pinCustomImageName = "user"
-        userAnnotation.subtitle = "current location"
+        userAnnotation.subtitle = "Looking for airport"
         let pinAnnotationView = MKPinAnnotationView(annotation: userAnnotation, reuseIdentifier: "pin")
         self.mapView.addAnnotation(pinAnnotationView.annotation!)
     }
@@ -86,19 +81,13 @@ class HomeScreenView: UIViewController {
             let point: MKMapPoint = MKMapPoint(userLocation.coordinate)
             mapRect = mapRect.union(MKMapRect(x: point.x,y: point.y,width: 0,height: 0))
         }
-        
         mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: 40.0, left: 40.0, bottom: 40.0, right: 40.0), animated: true)
-        
     }
 }
 extension HomeScreenView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-//        guard !annotation.isKindOfClass(MKUserLocation) else {
-//            return nil
-//        }
     }
     func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
-        
     }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("annotation tapped")

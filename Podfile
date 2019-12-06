@@ -7,8 +7,5 @@ target 'AirportLocator' do
 
   # Pods for AirportLocator
 pod 'Bond', '~>7.6.0'
-pod 'IQKeyboardManagerSwift', '~>6.4.0'
-pod 'Moya', '~>13.0.1'
 pod 'SwiftLint', '~>0.33.0'
-
 end
